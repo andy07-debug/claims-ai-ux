@@ -1,0 +1,73 @@
+<!-- ===== CLAIM SEARCH (Claims Mode style) ===== -->
+<div class="scr" id="scr-search" style="height:100%">
+ <div class="cm">
+  <div class="cm-bar"><span class="sp"></span><button class="cm-new" data-act="new-claim">Create New Claim <svg><use href="#i-plus"/></svg></button><span class="cm-ib" data-act="bell"><svg><use href="#i-bell"/></svg><i></i></span><span class="cm-ib" data-act="go-home"><svg><use href="#i-home"/></svg></span><span class="cm-ib" data-act="fullscreen"><svg><use href="#i-expand"/></svg></span></div>
+  <div class="cm-sh"><span class="back" data-act="go-home" title="Back"><svg><use href="#i-arrow"/></svg></span><div><h2>Claims of John</h2><small>Showing 1–5 of 10 results</small></div><span class="sp"></span>
+   <span class="cm-sel">Per Page (5) <svg><use href="#i-chev"/></svg></span><span class="cm-ib sq" data-act="cm-filter"><svg><use href="#i-filter"/></svg></span><span class="cm-sort" data-act="cm-sort"><svg><use href="#i-sort"/></svg><span>Relevance (High → Low)</span></span></div>
+  <div class="cm-list" id="cs-list"></div>
+ </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="scr" id="scr-dash" style="height:100%">
+ <div class="cm">
+  <div class="cm-bar"><h2>Dashboard</h2><span class="sp"></span><button class="cm-new" data-act="new-claim">Create New Claim <svg><use href="#i-plus"/></svg></button><span class="cm-ib" data-act="bell"><svg><use href="#i-bell"/></svg><i></i></span><span class="cm-ib" data-act="go-home"><svg><use href="#i-home"/></svg></span><span class="cm-ib" data-act="fullscreen"><svg><use href="#i-expand"/></svg></span></div>
+  <div class="cm-list" id="ds-scroll">
+   <div class="cm-search"><span class="cm-sel">Search By Name <svg><use href="#i-chev"/></svg></span><input placeholder="Enter claimant name" id="ds-q" autocomplete="off"><span class="cm-sbtn" data-act="ds-search"><svg><use href="#i-search"/></svg>Search</span><span class="cm-ib sq" data-act="cm-filter"><svg><use href="#i-filter"/></svg><span class="cm-ap">0 Applied</span></span><span class="cm-ib sq" data-act="cm-sort"><svg><use href="#i-sort"/></svg></span></div>
+   <div class="cm-stat">
+    <div class="g"><div class="gh"><b>Claims Status</b><span class="cm-sel">Select Due Date <svg><use href="#i-chev"/></svg></span></div>
+     <div class="tiles"><div class="tile"><small>OPEN CLAIMS</small><b>412 <i>(Total)</i></b><span class="cb"></span></div><div class="tile"><small>CLOSED CLAIMS</small><b>3,468 <i>(Total)</i></b><span class="cb"></span></div></div></div>
+    <div class="g"><div class="gh"><b>What’s Changed</b><span class="cm-sel">Today <svg><use href="#i-chev"/></svg></span></div>
+     <div class="tiles"><div class="tile"><small>CLAIMS TO BE SYNCED</small><b>1 <i>(Filtered)</i></b><span class="cb"></span></div><div class="tile"><small>FOLLOW-UPS DUE TODAY</small><b class="due">6</b><span class="cb"></span></div></div></div>
+    <span class="cm-more">See more <svg><use href="#i-chev"/></svg></span>
+   </div>
+   <div class="cm-row2">
+    <div class="cm-panel"><div class="gh"><b>Priority</b><svg class="info"><use href="#i-info"/></svg></div>
+     <div class="pri"><span class="cb"></span><div class="pr crit"><span><b>132</b> Critical Claims</span><span>3.4%</span></div></div>
+     <div class="pri"><span class="cb"></span><div class="pr hi"><span><b>3,604</b> High Priority Claims</span><span>92.9%</span></div></div>
+     <div class="pri"><span class="cb"></span><div class="pr lo"><span><b>144</b> Low Priority Claims</span><span>3.7%</span></div></div></div>
+    <div class="cm-panel"><div class="gh"><b>Incident Type</b></div><div id="donut"></div></div>
+   </div>
+   <div class="cm-lh">Claims (4,352)</div>
+   <div id="ds-list"></div>
+  </div>
+ </div>
+</div>
+
+<!-- ===== CLAIM DETAILS ===== -->
+<div class="scr" id="scr-claim" style="height:100%">
+ <div class="cm">
+  <div class="cm-tabs" id="cl-tabs"><span class="t on" data-act="cl-tab" data-v="OV"><svg><use href="#i-spark"/></svg>Claim Overview</span><span class="t" data-act="cl-tab" data-v="NOTES"><svg><use href="#i-note"/></svg>Notes <i id="notes-n">(8)</i></span><span class="t" data-act="cl-tab" data-v="DOCS"><svg><use href="#i-doc"/></svg>Documents</span><span class="t" data-act="cl-tab" data-v="AUDIT"><svg><use href="#i-list"/></svg>Audit log</span><span class="sp"></span><span class="cm-ib" data-act="bell"><svg><use href="#i-bell"/></svg><i></i></span><span class="cm-ib" data-act="go-home"><svg><use href="#i-home"/></svg></span><span class="cm-ib" data-act="fullscreen"><svg><use href="#i-expand"/></svg></span></div>
+  <div class="cm-list" id="cl-scroll">
+   <div class="cm-dh"><span class="back" data-act="cl-back" title="Back"><svg><use href="#i-arrow"/></svg></span><div><h2>John Whitaker - Claim details</h2><small>Claim Number: WC-2025-009214 <svg><use href="#i-copy"/></svg></small></div></div>
+   <div class="cv on" id="cv-OV">
+    <div class="cm-ais big"><div class="cm-aih"><svg class="lm-spk" viewBox="0 0 24 24"><path d="M10 4.5l1.6 5.4 5.4 1.6-5.4 1.6L10 18.5l-1.6-5.4L3 11.5l5.4-1.6zM18 3l.7 2.3L21 6l-2.3.7L18 9l-.7-2.3L15 6l2.3-.7z" fill="currentColor"/></svg>AI Summary</div><p>A workers’ comp claim was filed for John Whitaker. He injured his right shoulder moving a park bench at Maintenance Yard 4 and has been on transitional duty since August. The 90-day follow-up is now overdue…<span class="cm-vm" data-act="cm-more">View More</span></p></div>
+    <div class="cm-det"><div class="dh"><b>Claim Details</b><span class="cm-pill st s-pend">Pending</span><span class="sp"></span><span class="cm-ib sq" data-act="cm-edit"><svg><use href="#i-pen"/></svg></span></div>
+     <div class="acc open warnacc" id="acc-wc"><div class="ah" data-act="acc"><b>Workers Comp Alerts</b><span class="cm-pill high"><svg><use href="#i-alert"/></svg>1 overdue</span><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab" id="wc-alerts"></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>General Information</b><span class="fill">80% Filled</span><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><div class="cm-fg ro"><div><small>Claim Number</small><b>WC-2025-009214</b></div><div><small>Location</small><b>Parks Maintenance Yard 4</b></div><div><small>Union</small><b>Yes</b></div><div><small>Date of Loss</small><b>22 July, 2025</b></div><div><small>Date Reported</small><b>23 July, 2025</b></div><div><small>Coverage Code</small><b>Workers’ Comp</b></div></div></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>Claimant Information</b><span class="fill">57% Filled</span><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><div class="cm-fg ro"><div><small>Claimant</small><b>John Whitaker</b></div><div><small>Job Title</small><b>Parks maintenance worker</b></div><div><small>Hire Date</small><b>3 April, 2017</b></div></div></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>Incident Information</b><span class="fill">71% Filled</span><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><div class="cm-fg ro"><div><small>Body Part</small><b>Right shoulder</b></div><div><small>Cause</small><b>Lifting · park bench</b></div><div><small>Lost Time</small><b>No · transitional duty</b></div></div></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>Contacts</b><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><div class="cm-fg ro"><div><small>Claim Analyst</small><b>Marcus Bell</b></div><div><small>TPA</small><b>Harbor Claims Services</b></div><div><small>Treating Physician</small><b>Dr. Alan Brooks</b></div></div></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>Liability</b><span class="fill">50% Filled</span><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><div class="cm-fg ro"><div><small>Compensable</small><b>Yes</b></div><div><small>Reserves</small><b>$18,400</b></div></div></div></div>
+     <div class="acc"><div class="ah" data-act="acc"><b>Other Claims Of The Claimant (0)</b><svg class="cv2"><use href="#i-chev"/></svg></div><div class="ab"><p class="cm-empty">No other claims.</p></div></div>
+    </div>
+   </div>
+   <div class="cv" id="cv-NOTES">
+    <div class="cm-nsearch"><svg><use href="#i-search"/></svg><input placeholder="Search by note content" autocomplete="off"><span class="cm-sel"><svg><use href="#i-cal"/></svg>Select date</span><span class="cm-sel pr"><svg><use href="#i-sort"/></svg>Sort</span></div>
+    <div class="cm-ntabs"><span>Analysts Notes</span><span class="on">All Notes</span></div>
+    <div id="notes-list"></div>
+   </div>
+   <div class="cv" id="cv-DOCS"><div class="cm-docs"><div class="d"><span class="ic"><svg><use href="#i-doc"/></svg></span><div><b>Work_Status_Report_Whitaker_2026-10-27.pdf</b><small>Medical · Dr. Alan Brooks · 27 Oct 2026</small></div></div><div class="d"><span class="ic"><svg><use href="#i-doc"/></svg></span><div><b>Transitional_Duty_Offer_2026-08-12.pdf</b><small>HR · 12 Aug 2026</small></div></div><div class="d"><span class="ic"><svg><use href="#i-doc"/></svg></span><div><b>First_Report_of_Injury_2025-07-23.pdf</b><small>Claim intake · 23 Jul 2025</small></div></div></div></div>
+   <div class="cv" id="cv-AUDIT"><div class="cm-docs"><div class="d"><span class="ic"><svg><use href="#i-list"/></svg></span><div><b>Data synced from the claims system</b><small>Today, 9:30 AM</small></div></div><div class="d"><span class="ic"><svg><use href="#i-list"/></svg></span><div><b>Work status updated: transitional duty</b><small>Marcus Bell · 27 Oct 2026</small></div></div></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- ===== PROJECTS ===== -->
+<div class="scr" id="scr-projects" style="height:100%">
+ <div class="cx" style="overflow:auto">
+  <div class="cx-top"><a data-act="home">Claims Mode</a><span class="sep">/</span><span>Projects</span></div>
+  <div class="pj-tools"><input id="pj-search" placeholder="Search by name or by creator" autocomplete="off"><span class="pj-sel">Date: Newest First <svg style="width:14px;height:14px"><use href="#i-chev"/></svg></span><label style="display:inline-flex;gap:8px;align-items:center;font-size:13.5px;color:#4B5563"><input type="checkbox" id="pj-sub" style="width:16px;height:16px;accent-color:#5928ED">Show Sub Projects</label><button class="btn out sm" data-act="pj-new" style="margin-left:auto">+ New Project</button></div>
+  <div class="pj-grid" id="pj-grid"></div>
+ </div>
+</div>
