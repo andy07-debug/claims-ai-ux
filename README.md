@@ -12,7 +12,9 @@ ask "Show me John’s claims" → the claims come back ranked, each with an AI s
 opens the supporting factors and the decision strength → a tag opens the evidence (the work status report) →
 "Show me the gap" names what is missing on John Whitaker’s claim (the 90-day transitional-duty follow-up, overdue,
 no note, no owner) → the dashboard → his claim → the AI offers "Update 120 Day Follow Up Date" → one click sets the
-date, schedules the next follow-up, adds the note and assigns the owner.
+date, schedules the next follow-up, adds the note and assigns the owner → Claims Anomaly Intelligence: ask "Where are
+incidents rising?" → trends by location, cost and litigation → a trending-risk insight opens the claims behind it →
+"Assign a safety review". All data is sample data.
 
 - Click the highlighted control to move on, or use the **Guided demo** bar (◀ ▶ Play).
 - `?clean` hides the demo bar and hint rings (for screen recording). `?play` plays the whole flow.

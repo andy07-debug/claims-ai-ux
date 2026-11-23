@@ -66,7 +66,7 @@ const DASH=[CL[3],
  {n:22,name:'Kevin Brandt',no:'AL-2026-000512',type:'Auto Liability',analyst:'Marcus Bell',loc:'Central Fleet Garage',date:'12 October, 2026',alert:'Litigation Review',due:'1 December, 2026',status:'Open',tags:['sync'],
   sum:'An auto liability claim was filed for Kevin Brandt. A city van rear-ended his car at a light; his attorney has asked for the dash camera footage…'}];
 function renderDash(){ $('#ds-list').innerHTML=DASH.map(r=>cmCard(r,'dash')).join(''); }
-function donut(){ const seg=[['Workers’ Comp',3174,'#3B82F6'],['Auto Liability',843,'#FACC15'],['Collision',223,'#F59E0B'],['General Liability',111,'#84CC16'],['Workers’ Comp Employers Liability',1,'#2DD4BF']];
+function donut(){ const seg=[['Workers’ Comp',2862,'#3B82F6'],['Auto Liability',788,'#FACC15'],['General Liability',357,'#84CC16'],['Collision',241,'#F59E0B'],['Property Damage',104,'#2DD4BF']]; // sample numbers (not the demo client's)
   const tot=seg.reduce((a,s)=>a+s[1],0), R=88, r=50, cx=110, cy=110; let a0=-Math.PI/2;
   const arcs=seg.map(([n,v,c])=>{ const a1=a0+2*Math.PI*v/tot, big=a1-a0>Math.PI?1:0, P=(rr,a)=>`${cx+rr*Math.cos(a)} ${cy+rr*Math.sin(a)}`;
     const d=`M ${P(R,a0)} A ${R} ${R} 0 ${big} 1 ${P(R,a1)} L ${P(r,a1)} A ${r} ${r} 0 ${big} 0 ${P(r,a0)} Z`, m=(a0+a1)/2; a0=a1;

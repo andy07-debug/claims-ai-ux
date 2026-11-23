@@ -52,7 +52,7 @@ function clock(){ st.t++; const base=cur>=7?50:cur>=3?42:39; return `9:${String(
 let screen='home';
 function show(name){ screen=name; $$('#screens > .scr').forEach(s=>s.classList.toggle('on',s.id==='scr-'+name)); closeOv();
   if(name==='projects') renderProjects(); updateHint(); }
-function greet(){ return bot(`<p class="cxp">Hey 👋,</p><p class="cxp"><b>Welcome to Claims Mode!</b></p><p class="cxp">I can help you review claims, find information faster, and take actions right from this chat.</p><p class="cxp"><b>Suggested Actions:</b></p>${opt('Search an existing claim','id="sg-main" data-act="sugg" data-k="main"')}${opt('Show me claims that are in critical priority','data-act="free" data-q="critical"')}${opt('Create a new claim','data-act="new-claim"')}${opt('Or, type your answer below','data-act="focus"')}`,'9:38 AM'); }
+function greet(){ return bot(`<p class="cxp">Hey 👋,</p><p class="cxp"><b>Welcome to Claims Mode!</b></p><p class="cxp">I can help you review claims, find information faster, and take actions right from this chat.</p><p class="cxp"><b>Suggested Actions:</b></p>${opt('Search an existing claim','id="sg-main" data-act="sugg" data-k="main"')}${opt('Show me claims that are in critical priority','data-act="free" data-q="critical"')}${opt('Where are incidents rising?','data-act="ai-open"')}${opt('Create a new claim','data-act="new-claim"')}${opt('Or, type your answer below','data-act="focus"')}`,'9:38 AM'); }
 function renderSugg(){}
 function closeOv(){ ['#ov-menu','#ov-modes','#ov-filter','#ov-hamb'].forEach(s=>{const e=$(s); if(e) e.style.display='none';}); $$('.org-list').forEach(x=>x.classList.remove('on')); }
 const PROJECTS=[['Workers’ comp · open claims','Claims · 412 claims','Active'],['Transitional duty follow-ups','Claims · 38 claims','In review'],['Auto liability · fleet','Risk · 96 claims','Active'],['Litigation review','Legal · 14 claims','In review'],['General liability · facilities','Risk · 22 claims','Active']];
@@ -110,7 +110,7 @@ const STEPS=[
     const g=$('#go-dash'); if(ANIM&&g){await point(g); await sleep(120); guard(t);} hideCursor();
     openWhy(GAPN,false); show('dash'); renderDash(); $('#ds-scroll').scrollTop=0;
     raw(`<div class="divider">Opened the dashboard</div>`);
-    const m=bot(`<p>Here is every open claim: <b>412 open</b>, <b>132 critical</b>, and <b>6 follow-ups due today</b>.</p><p style="margin-top:6px">John Whitaker’s claim is at the top: its transitional-duty follow-up is <b>4 days overdue</b>.</p>`,'9:44 AM');
+    const m=bot(`<p>Here is every open claim: <b>586 open</b>, <b>118 critical</b>, and <b>6 follow-ups due today</b>.</p><p style="margin-top:6px">John Whitaker’s claim is at the top: its transitional-duty follow-up is <b>4 days overdue</b>.</p>`,'9:44 AM');
     await scrollChat(m);
     if(ANIM){ await sleep(500); guard(t); await smoothScroll($('#ds-scroll'),$('#ds-scroll').scrollHeight,1100); }
     else $('#ds-scroll').scrollTop=$('#ds-scroll').scrollHeight;
@@ -128,13 +128,38 @@ const STEPS=[
     const b=$('#upd-date'); if(ANIM&&b){await point(b); await sleep(150); guard(t);} hideCursor();
     st.updated=true; st.pop=false; renderAlerts(); if(ANIM) toast('Follow-up updated · note added · owner Marcus Bell');
     const m=bot(`<div class="allok"><div class="gh">${icoS('i-check',18)}Follow-up completed</div><p>120-day follow-up set to <b>Nov 21, 2026</b>; next follow-up <b>Dec 21, 2026</b>. I added a note to the claim and assigned it to <b>Marcus Bell</b>.</p></div>
-      <div class="nchips"><span class="nchip" id="see-note" data-act="see-note">See the note</span><span class="nchip" data-act="go-dash">Back to the dashboard</span></div>`,'9:46 AM');
+      <div class="nchips"><span class="nchip" id="see-note" data-act="see-note">See the note</span><span class="nchip" data-act="go-dash">Back to the dashboard</span></div>
+      <p style="margin-top:10px">Want to see where claims are rising across every location?</p>${opt(IQ,'id="ask-intel" data-act="ai-open"')}`,'9:46 AM');
+    await scrollChat(m);
+ }},
+ {id:'intel',label:'Where incidents are rising',run:async t=>{
+    const c=$('#ask-intel'); if(ANIM&&c){await point(c); await sleep(120); guard(t);} hideCursor();
+    const u=user(IQ,'9:47 AM'); await scrollChat(u);
+    await analyzing(t,'Portfolio Insights',[['Read every claim in the last 7 days · <b>412 claims</b>'],['Compared 19 locations week over week'],['Looked for repeated incidents and claimant patterns · <b>4 risks</b>']],'4','9:47 AM');
+    guard(t); ist.drawer=null; show('intel'); renderIntel(); const sc=$('#ai-scroll'); sc.scrollTop=0;
+    raw(`<div class="divider">Opened Claims Anomaly Intelligence</div>`);
+    const m=bot(`<p>Claims are rising at <b>5 locations</b> this week. <b>Yard 4 · Newark</b> is up the most: <b>9 slip-and-fall claims</b> in two weeks, 3× its usual rate.</p><p style="margin-top:6px">I flagged <b>4 risks</b>. Each one links to the claims and the location behind it.</p>`,'9:47 AM');
+    await scrollChat(m);
+    const risk=$('#ai-risk'), to=()=>Math.max(0,risk.offsetTop-sc.offsetTop-18);
+    if(ANIM){ await sleep(1200); guard(t); await smoothScroll(sc,to(),1600); } else sc.scrollTop=to();
+ }},
+ {id:'insight',label:'The claims behind it',run:async t=>{
+    const g=$('#ins-go-1'); if(ANIM&&g){await point(g); await sleep(120); guard(t);} hideCursor();
+    $('#ins-1').classList.add('hl'); openDrawer(INS[0]);
+    const m=bot(`<p>Here are the <b>9 claims</b> behind it: all slips, 7 near the wash bay, since <b>Nov 8</b>.</p><p style="margin-top:6px">A safety review now can stop the next one.</p>`,'9:48 AM');
+    await scrollChat(m);
+ }},
+ {id:'acted',label:'Act before losses grow',run:async t=>{
+    const b=$('#ai-act'); if(ANIM&&b){await point(b); await sleep(150); guard(t);} hideCursor();
+    ist.done[1]=true; renderDrawer(); const it=$('#ins-go-1'); if(it){ it.innerHTML=ic('ok',14)+'Action taken'; it.parentElement.classList.add('done'); }
+    if(ANIM) toast(INS[0].done);
+    const m=bot(`<div class="allok"><div class="gh">${icoS('i-check',18)}Safety review assigned</div><p>The Yard 4 supervisor owns it, due <b>Nov 28</b>. I’ll flag it if another slip claim comes in.</p></div>`,'9:48 AM');
     await scrollChat(m);
  }},
 ];
 
-async function analyzing(t,type,steps,secs){
-  const el=bot(`<div class="lm-qt">Question Type: <span class="ty">${type}</span> — <span class="stt">${ANIM?'Analyzing...':'Done in '+secs+' s'}</span></div><div class="lm-gen" data-act="lm-gen">Generating your summary ${ico('i-chev')}</div><div class="lm-steps">${steps.map((s,i)=>`<div class="lm-st"><span class="d ${ANIM?(i===0?'pend':''):'done'}"></span><span>${s[0]}</span></div>`).join('')}</div>`);
+async function analyzing(t,type,steps,secs,tm){
+  const el=bot(`<div class="lm-qt">Question Type: <span class="ty">${type}</span> — <span class="stt">${ANIM?'Analyzing...':'Done in '+secs+' s'}</span></div><div class="lm-gen" data-act="lm-gen">Generating your summary ${ico('i-chev')}</div><div class="lm-steps">${steps.map((s,i)=>`<div class="lm-st"><span class="d ${ANIM?(i===0?'pend':''):'done'}"></span><span>${s[0]}</span></div>`).join('')}</div>`,tm);
   await scrollChat(el);
   if(ANIM){ const ds=[...el.querySelectorAll('.lm-st .d')]; for(let i=0;i<ds.length;i++){ ds[i].className='d pend'; await sleep(800); guard(t); ds[i].className='d done'; } el.querySelector('.stt').textContent='Done in '+secs+' s'; }
 }
@@ -152,7 +177,7 @@ async function work(t,steps,secs){
 
 /* ======================= side questions ======================= */
 const FREE={
- critical:{q:'Show me claims that are in critical priority',a:()=>`<p><b>132 claims</b> are critical. The three oldest:</p><table class="mini"><tr><th>Claimant</th><th>Type</th><th class="r">Open</th></tr>${[['Gloria Pierce','Workers’ comp','418 days'],['Darnell Hayes','Auto liability','377 days'],['Marisol Vega','General liability','352 days']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r num">${r[2]}</td></tr>`).join('')}</table>`},
+ critical:{q:'Show me claims that are in critical priority',a:()=>`<p><b>118 claims</b> are critical. The three oldest:</p><table class="mini"><tr><th>Claimant</th><th>Type</th><th class="r">Open</th></tr>${[['Gloria Pierce','Workers’ comp','418 days'],['Darnell Hayes','Auto liability','377 days'],['Marisol Vega','General liability','352 days']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r num">${r[2]}</td></tr>`).join('')}</table>`},
  more:{q:'Show more of such claims',a:()=>`<p>Here are the next 5 of the 10:</p><table class="mini"><tr><th>Claimant</th><th>Type</th><th class="r">Score</th></tr>${[['John Delgado','Workers’ comp','84%'],['John Pryor','Auto liability','80%'],['John Ames','General liability','77%'],['John Feld','Workers’ comp','71%'],['John Lutz','Collision','66%']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="r num">${r[2]}</td></tr>`).join('')}</table>`},
  summary:{q:'Summarise this claim',a:()=>`<p><b>John Whitaker</b> · workers’ comp, right shoulder strain from moving a park bench (July 22, 2025). Compensable. On transitional duty since August 12, 2026.</p><ul class="bl"><li>${st.updated?'The 90-day follow-up is done; next follow-up <b>Dec 21, 2026</b>, owner Marcus Bell.':'The 90-day transitional-duty follow-up is <b>4 days overdue</b>, with no note and no owner.'}</li><li>Reserves: $18,400.</li></ul>`},
  newc:{q:'Create a new claim',a:()=>`<p>Creating claims is turned off in this sample demo. In Claims AI it walks you through the claim type, details, notes and documents, and sets the alerts before the claims system syncs.</p>`},
@@ -174,7 +199,7 @@ const idx=id=>STEPS.findIndex(s=>s.id===id);
 function label(){ $('#lbl').textContent=`${cur+1} / ${STEPS.length} · ${STEPS[cur].label}`; history.replaceState(null,'',location.pathname+location.search+'#'+STEPS[cur].id); updateHint(); }
 function reset(){
   st=S0(); msgs.innerHTML=''; scroller.scrollTop=0; hideCursor(); closeModal(); closeOv(); $('#toast').classList.remove('on');
-  renderSearch(); renderDash(); $('#donut').innerHTML=donut(); setTab('OV'); renderAlerts(); renderNotes();
+  renderSearch(); renderDash(); $('#donut').innerHTML=donut(); Object.assign(ist,{range:'7d',plot:'count',drawer:null,done:{},plotOpen:false}); renderIntel(); setTab('OV'); renderAlerts(); renderNotes();
   $('#cin').value=''; document.body.classList.remove('chat-min','wide'); paintStars();
 }
 async function goTo(i){ const t=++TOKEN; ANIM=false; busy=false; advancing=false; freeBusy=false; document.body.classList.add('instant'); reset();
@@ -188,7 +213,7 @@ async function play(){ if(playing) return; playing=true; AUTOPLAY=true; $('#b-pl
   if(cur>=STEPS.length-1) await goTo(0);
   while(playing&&cur<STEPS.length-1){ await next(); await realSleep(1400); }
   playing=false; AUTOPLAY=false; hideCursor(); $('#b-play').textContent='Play'; updateHint(); }
-const HINTS={0:'#sg-main',3:'#why-1',4:'#tag-1-ev',5:'#show-gap',6:'#go-dash',7:'#dview-4',8:'#upd-date',9:'#see-note'};
+const HINTS={0:'#sg-main',3:'#why-1',4:'#tag-1-ev',5:'#show-gap',6:'#go-dash',7:'#dview-4',8:'#upd-date',9:'#ask-intel',10:'#ins-go-1',11:'#ai-act'};
 function updateHint(){ $$('.hint').forEach(e=>e.classList.remove('hint')); if(busy||playing||advancing) return; const sel=HINTS[cur]; const el=sel&&$(sel); if(el&&el.offsetParent) el.classList.add('hint'); }
 
 /* ======================= header bits ======================= */

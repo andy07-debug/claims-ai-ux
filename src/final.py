@@ -66,10 +66,13 @@ page=f'''<!doctype html>
 <style>{open('app.css').read()}</style>
 <style>{open('legal.css').read()}</style>
 <style>{open('claims.css').read()}</style>
+<style>{open('intel.css').read()}</style>
 </head>
 {body}
 <script>{open('app.js').read().split('/* ======================= state')[0]}
 {open('claims.js').read()}
+const USMAP={open('usmap.json').read()};
+{open('intel.js').read()}
 /* ======================= state{open('app.js').read().split('/* ======================= state',1)[1]}</script>
 </body></html>'''
 out=sys.argv[1] if len(sys.argv)>1 else 'out/index.html'
