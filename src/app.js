@@ -199,7 +199,7 @@ const idx=id=>STEPS.findIndex(s=>s.id===id);
 function label(){ $('#lbl').textContent=`${cur+1} / ${STEPS.length} · ${STEPS[cur].label}`; history.replaceState(null,'',location.pathname+location.search+'#'+STEPS[cur].id); updateHint(); }
 function reset(){
   st=S0(); msgs.innerHTML=''; scroller.scrollTop=0; hideCursor(); closeModal(); closeOv(); $('#toast').classList.remove('on');
-  renderSearch(); renderDash(); $('#donut').innerHTML=donut(); Object.assign(ist,{range:'7d',plot:'count',drawer:null,done:{},plotOpen:false}); renderIntel(); setTab('OV'); renderAlerts(); renderNotes();
+  renderSearch(); renderDash(); $('#donut').innerHTML=donut(); Object.assign(ist,{range:'7d',plot:'count',drawer:null,done:{},plotOpen:false}); renderIntel(); setTab('OV'); notesReset(); renderAlerts(); renderNotes();
   $('#cin').value=''; document.body.classList.remove('chat-min','wide'); paintStars();
 }
 async function goTo(i){ const t=++TOKEN; ANIM=false; busy=false; advancing=false; freeBusy=false; document.body.classList.add('instant'); reset();
@@ -231,7 +231,7 @@ document.addEventListener('click',async e=>{
   if(!el) return;
   const a=el.dataset.act;
   if(playing&&a!=='restart'&&a!=='logo') return;
-  if((busy||advancing)&&!['dd-modes','menu','close-ov','close-modal','acc','cl-tab','wstep','fullscreen'].includes(a)) return;
+  if((busy||advancing)&&!['dd-modes','menu','close-ov','close-modal','acc','cl-tab','note-x','wstep','fullscreen'].includes(a)) return;
   switch(a){
     case 'cm-why': { const n=+el.dataset.n; if(cur===3&&n===1) await advanceTo('reasoning'); else openWhy(n); break; }
     case 'cm-ev': { const n=+el.dataset.n, k=el.dataset.k; if(cur===4&&n===1&&k==='ev') await advanceTo('evidence'); else openEv(n,k); break; }
@@ -260,7 +260,8 @@ document.addEventListener('click',async e=>{
     case 'acc': el.parentElement.classList.toggle('open'); break;
     case 'upd-date': if(cur===8) await advanceTo('updated'); else if(cur>8) toast('Already updated'); break;
     case 'pop-custom': toast('Pick a custom date (demo)'); break;
-    case 'see-note': show('claim'); setTab('NOTES'); break;
+    case 'see-note': show('claim'); setTab('NOTES'); noteToggle('ai',true); break;
+    case 'note-x': noteToggle(el.dataset.k); break;
     case 'ds-search': { const v=($('#ds-q').value||'').trim(); toast(v?`Searching for “${v}” (sample)`:'Enter a claimant name'); break; }
     case 'lm-coll': { const l=$('#lm-ci'); if(l){ const hid=l.style.display==='none'; l.style.display=hid?'':'none'; el.querySelector('svg').style.transform=hid?'rotate(180deg)':'rotate(0deg)'; } break; }
     case 'lm-gen': { const p=el.nextElementSibling; if(p) p.style.display=p.style.display==='none'?'':'none'; break; }

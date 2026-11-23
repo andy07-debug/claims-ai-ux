@@ -243,3 +243,36 @@
 /* the popover buttons on one line (user 2026-11-21) */
 .cm-pop .b{align-items:center}
 .cm-pop .b .btn{margin:0;height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;line-height:1;vertical-align:middle;box-sizing:border-box}
+
+/* notes: collapsible, the Claims AI note opens to what it synced */
+.cm-note .h{cursor:pointer}
+.cm-note .cv-x{margin-left:auto;display:inline-flex;color:#6B7280;transition:transform .25s}
+.cm-note .cv-x svg{width:16px;height:16px}
+.cm-note.open .cv-x{transform:rotate(180deg)}
+.cm-note .nb{display:none;margin:12px 0 2px 14px}
+.cm-note.open .nb{display:block;animation:nbIn .3s ease-out}
+@keyframes nbIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.cm-nmeta{display:flex;gap:18px;font-size:12px;color:#6B7280}
+.cm-sync{border:1px solid #E5E7EB;border-radius:8px;background:#fff;overflow:hidden}
+.cm-sync .sh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #EEF0F3;font-size:13px}
+.cm-sync .sh>svg{width:16px;height:16px;color:#16A34A}
+.cm-sync .sh b{font-weight:600;color:#111827}
+.cm-sync .sh em{margin-left:auto;font-style:normal;font-size:11.5px;color:#6B7280}
+.cm-sync table{width:100%;border-collapse:collapse;font-size:12.5px}
+.cm-sync th{text-align:left;font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#6B7280;padding:8px 12px;background:#FAFAFB}
+.cm-sync td{padding:8px 12px;border-top:1px solid #F1F2F4;color:#1F2937;vertical-align:middle}
+.cm-sync td.was{color:#9CA3AF;text-decoration:line-through;white-space:nowrap}
+.cm-sync td.now{font-weight:500}
+.cm-sync td.ss{white-space:nowrap;width:96px;font-size:12px}
+.cm-sync .ss .sp{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #D1D5DB;border-top-color:var(--cmp);animation:spin .8s linear infinite;vertical-align:-2px;margin-right:6px}
+.cm-sync .ss .t1{color:#6B7280}
+.cm-sync .ss .t2{display:none;color:#15803D;font-weight:500;align-items:center;gap:4px}
+.cm-sync .ss .t2 svg{width:13px;height:13px}
+.cm-sync .ss.ok .sp,.cm-sync .ss.ok .t1{display:none}
+.cm-sync .ss.ok .t2{display:inline-flex}
+.cm-sync tr:has(.ss.ok) td.now{color:#15803D}
+.cm-sync .sf{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-top:1px solid #EEF0F3;background:#FAFAFB;font-size:11.5px;color:#4B5563}
+.cm-sync .sf span{display:inline-flex;align-items:center;gap:6px}
+.cm-sync .sf svg{width:13px;height:13px}
+.cm-nsearch .cm-sel.pr{flex:none;padding:5px 10px;border-width:1px;font-size:12.5px;font-weight:400;gap:6px;justify-content:flex-start}
+.cm-sync td:first-child{white-space:nowrap}
